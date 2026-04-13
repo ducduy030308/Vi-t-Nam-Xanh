@@ -8,7 +8,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Tối ưu hóa việc cuộn đến các phần để không bị Navbar che mất */
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 100px; 
@@ -38,7 +37,6 @@
             border: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        /* Hiệu ứng cho các mục menu */
         .nav-link {
             position: relative;
             transition: color 0.3s;
@@ -60,7 +58,7 @@
 </head>
 <body class="bg-slate-50 text-slate-900 leading-relaxed">
 
-    <!-- Navbar cố định trên cùng -->
+    <!-- Navbar -->
     <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
@@ -90,25 +88,26 @@
         </div>
     </section>
 
-    <!-- Bảng điều khiển thuyết minh (Đứng yên trong luồng trang) -->
+    <!-- Bảng điều khiển thuyết minh -->
     <div class="max-w-4xl mx-auto px-4 -mt-16 relative z-40 mb-20">
         <div class="glass-panel p-6 rounded-[2.5rem] shadow-2xl flex flex-col md:flex-row items-center gap-8 border border-white/50">
             <div class="flex items-center gap-5">
+                <!-- Nút phát liên kết trực tiếp với file âm thanh -->
                 <button id="playBtn" class="w-20 h-20 bg-emerald-600 text-white rounded-full flex items-center justify-center hover:bg-emerald-700 transition transform active:scale-95 shadow-xl shadow-emerald-200/50">
                     <i data-lucide="play" id="playIcon" class="fill-white w-8 h-8 ml-1"></i>
                 </button>
                 <div class="flex flex-col min-w-[120px]">
-                    <span id="narratorStatus" class="text-xs font-black text-emerald-600 uppercase tracking-widest mb-1">Thuyết Minh</span>
+                    <span class="text-xs font-black text-emerald-600 uppercase tracking-widest mb-1">Thuyết Minh</span>
                     <span class="text-lg font-bold text-slate-800" id="statusLabel">Phát</span>
                 </div>
             </div>
 
-            <!-- Khu vực vẽ sóng âm -->
+            <!-- Khu vực Visualizer sóng âm -->
             <div class="flex-1 w-full bg-slate-100/50 rounded-3xl p-3 border border-slate-200/50">
                 <canvas id="visualizer"></canvas>
             </div>
 
-            <!-- Tùy chỉnh âm lượng -->
+            <!-- Điều khiển âm lượng -->
             <div class="hidden md:flex flex-col items-center gap-2 px-4 border-l border-slate-200">
                 <div class="flex items-center gap-3">
                     <i data-lucide="volume-2" class="w-4 h-4 text-slate-400"></i>
@@ -138,8 +137,7 @@
                     </div>
                 </div>
                 <div class="w-full md:w-1/2 relative">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-red-100 rounded-full blur-3xl opacity-50"></div>
-                    <img src="https://cdn-i.vtcnews.vn/resize/th/upload/2022/10/20/ra-thai-nhua-2-10412144.png" alt="Thực trạng ô nhiễm rác thải" class="content-image relative z-10">
+                    <img src="https://cdn-i.vtcnews.vn/resize/th/upload/2022/10/20/ra-thai-nhua-2-10412144.png" alt="Ô nhiễm rác thải nhựa" class="content-image relative z-10">
                 </div>
             </div>
         </div>
@@ -157,24 +155,9 @@
                     <p class="text-slate-600 text-lg lg:text-xl leading-relaxed mb-8">
                         Thay đổi bắt đầu từ thói quen. Bằng cách áp dụng mô hình 3R: Tiết giảm, Tái sử dụng và Tái chế, chúng ta có thể giảm bớt gánh nặng cho môi trường. Hãy bắt đầu từ việc phân loại rác tại nguồn ngay hôm nay.
                     </p>
-                    <div class="grid grid-cols-3 gap-4 mb-8">
-                        <div class="bg-white p-4 rounded-2xl text-center shadow-sm border border-emerald-100 hover:shadow-md transition">
-                            <span class="block text-emerald-600 font-black text-lg">REDUCE</span>
-                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Tiết giảm</span>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl text-center shadow-sm border border-emerald-100 hover:shadow-md transition">
-                            <span class="block text-emerald-600 font-black text-lg">REUSE</span>
-                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Tái sử dụng</span>
-                        </div>
-                        <div class="bg-white p-4 rounded-2xl text-center shadow-sm border border-emerald-100 hover:shadow-md transition">
-                            <span class="block text-emerald-600 font-black text-lg">RECYCLE</span>
-                            <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Tái chế</span>
-                        </div>
-                    </div>
                 </div>
                 <div class="w-full md:w-1/2 relative">
-                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-200 rounded-full blur-3xl opacity-50"></div>
-                    <img src="https://ktmt.vnmediacdn.com/thumb_x400x/images/2022/03/16/5-1647399923-hinh-anh-bao-ve-moi-truong-kinhtemoitruong-5.jpg" alt="Hành động vì môi trường" class="content-image relative z-10">
+                    <img src="https://ktmt.vnmediacdn.com/thumb_x400x/images/2022/03/16/5-1647399923-hinh-anh-bao-ve-moi-truong-kinhtemoitruong-5.jpg" alt="Bảo vệ môi trường" class="content-image relative z-10">
                 </div>
             </div>
         </div>
@@ -188,8 +171,6 @@
             </div>
             <h3 class="text-2xl font-black mb-4 tracking-tighter uppercase italic">Dự án Việt Nam Xanh</h3>
             <p class="text-slate-400 mb-10 leading-relaxed font-light">Vì một tương lai không rác thải nhựa, vì một Việt Nam mãi xanh tươi.</p>
-            <div class="h-px bg-slate-800 w-full mb-10"></div>
-            <p class="text-[10px] text-slate-500 uppercase tracking-[0.3em] font-bold">© 2024 Hành Trình Xanh. Tất cả vì môi trường.</p>
         </div>
     </footer>
 
@@ -207,7 +188,6 @@
         let isPlaying = false;
         let isInitialized = false;
 
-        // Khởi tạo kích thước canvas & vẽ sóng tĩnh ban đầu
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
@@ -224,23 +204,24 @@
             }
         }
 
-        // Khởi tạo hệ thống Audio từ file âm thanh thực tế
+        // Khởi tạo âm thanh và bộ phân tích sóng từ file đã tải lên
         function initAudio() {
             if (isInitialized) return;
 
-            // Sử dụng encodeURI để đảm bảo tên file có dấu, khoảng trắng được gọi chuẩn xác nhất
-            audio = new Audio(encodeURI("Ghi tiêu chuẩn 1.mp3"));
+            // Đường dẫn đến file âm thanh bạn đã cung cấp
+            audio = new Audio("Ghi tiêu chuẩn 1.mp3");
+            audio.crossOrigin = "anonymous";
             
-            // Khởi tạo AudioContext để phân tích tần số cho Visualizer
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             const source = audioCtx.createMediaElementSource(audio);
             analyser = audioCtx.createAnalyser();
             analyser.fftSize = 256;
+            
             source.connect(analyser);
             analyser.connect(audioCtx.destination);
+            
             dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-            // Gắn sự kiện khi kết thúc âm thanh
             audio.onended = () => {
                 isPlaying = false;
                 cancelAnimationFrame(animationId);
@@ -248,20 +229,15 @@
                 updateUI();
                 statusLabel.innerText = "Phát Lại";
             };
-            
-            // Gắn sự kiện bắt lỗi tải file
+
             audio.onerror = () => {
-                isPlaying = false;
-                cancelAnimationFrame(animationId);
+                console.error("Lỗi: Không thể tải hoặc phát file âm thanh.");
                 statusLabel.innerText = "Lỗi âm thanh";
-                console.error("Không thể tải tập tin: Ghi tiêu chuẩn 1.mp3");
-                updateUI();
             };
 
             isInitialized = true;
         }
 
-        // Vẽ Visualizer sóng âm liên tục
         function renderLoop() {
             if(!isPlaying) return;
             animationId = requestAnimationFrame(renderLoop);
@@ -276,63 +252,33 @@
                 const val = dataArray[i % dataArray.length];
                 const height = (val / 255) * canvas.height * 0.9;
                 
-                // Tạo dải màu gradient dựa vào chiều cao sóng
-                const r = 16 + (val/255) * 50; 
-                const g = 185; 
-                const b = 129 + (val/255) * 50;
-                
-                canvasCtx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                canvasCtx.fillStyle = '#10b981';
                 canvasCtx.fillRect(i * (barWidth + gap), canvas.height/2 - height/2, barWidth, height + 2);
             }
         }
 
-        // Cập nhật giao diện nút bấm
         function updateUI() {
             playIcon.setAttribute('data-lucide', isPlaying ? 'pause' : 'play');
-            if (statusLabel.innerText !== "Lỗi âm thanh") {
-                statusLabel.innerText = isPlaying ? "Đang phát..." : "Phát";
-            }
+            statusLabel.innerText = isPlaying ? "Đang phát..." : "Phát";
             lucide.createIcons();
         }
 
-        // Xử lý sự kiện bấm nút Play/Pause
         playBtn.addEventListener('click', () => {
-            if(!isInitialized) {
-                initAudio();
-            }
+            if(!isInitialized) initAudio();
 
-            // Mở khóa AudioContext (Bắt buộc trên một số trình duyệt hiện đại khi tương tác)
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
 
             if(isPlaying) {
                 audio.pause();
-                cancelAnimationFrame(animationId);
-                drawStaticWave();
                 isPlaying = false;
-                updateUI();
             } else {
-                // Xử lý Promise của hàm play() để tránh lỗi trên trình duyệt
-                let playPromise = audio.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(_ => {
-                        isPlaying = true;
-                        renderLoop();
-                        updateUI();
-                    }).catch(error => {
-                        console.error("Autoplay bị chặn hoặc file không hợp lệ:", error);
-                        statusLabel.innerText = "Lỗi phát";
-                    });
-                } else {
-                    isPlaying = true;
-                    renderLoop();
-                    updateUI();
-                }
+                audio.play();
+                isPlaying = true;
+                renderLoop();
             }
+            updateUI();
         });
 
-        // Liên kết thanh âm lượng
         volumeControl.addEventListener('input', (e) => {
             if(audio) audio.volume = e.target.value;
         });
