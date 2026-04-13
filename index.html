@@ -228,9 +228,8 @@
         function initAudio() {
             if (isInitialized) return;
 
-            // Sử dụng file âm thanh được cung cấp
-            audio = new Audio("Ghi tiêu chuẩn 1.mp3");
-            audio.crossOrigin = "anonymous"; // Giúp tránh lỗi bảo mật khi phân tích sóng âm
+            // Sử dụng encodeURI để đảm bảo tên file có dấu, khoảng trắng được gọi chuẩn xác nhất
+            audio = new Audio(encodeURI("Ghi tiêu chuẩn 1.mp3"));
             
             // Khởi tạo AudioContext để phân tích tần số cho Visualizer
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -248,6 +247,15 @@
                 drawStaticWave();
                 updateUI();
                 statusLabel.innerText = "Phát Lại";
+            };
+            
+            // Gắn sự kiện bắt lỗi tải file
+            audio.onerror = () => {
+                isPlaying = false;
+                cancelAnimationFrame(animationId);
+                statusLabel.innerText = "Lỗi âm thanh";
+                console.error("Không thể tải tập tin: Ghi tiêu chuẩn 1.mp3");
+                updateUI();
             };
 
             isInitialized = true;
@@ -281,7 +289,9 @@
         // Cập nhật giao diện nút bấm
         function updateUI() {
             playIcon.setAttribute('data-lucide', isPlaying ? 'pause' : 'play');
-            statusLabel.innerText = isPlaying ? "Đang phát..." : "Tạm Dừng";
+            if (statusLabel.innerText !== "Lỗi âm thanh") {
+                statusLabel.innerText = isPlaying ? "Đang phát..." : "Phát";
+            }
             lucide.createIcons();
         }
 
@@ -291,7 +301,7 @@
                 initAudio();
             }
 
-            // Mở khóa AudioContext (Bắt buộc trên một số trình duyệt hiện đại)
+            // Mở khóa AudioContext (Bắt buộc trên một số trình duyệt hiện đại khi tương tác)
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
@@ -300,12 +310,26 @@
                 audio.pause();
                 cancelAnimationFrame(animationId);
                 drawStaticWave();
+                isPlaying = false;
+                updateUI();
             } else {
-                audio.play();
-                renderLoop();
+                // Xử lý Promise của hàm play() để tránh lỗi trên trình duyệt
+                let playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        isPlaying = true;
+                        renderLoop();
+                        updateUI();
+                    }).catch(error => {
+                        console.error("Autoplay bị chặn hoặc file không hợp lệ:", error);
+                        statusLabel.innerText = "Lỗi phát";
+                    });
+                } else {
+                    isPlaying = true;
+                    renderLoop();
+                    updateUI();
+                }
             }
-            isPlaying = !isPlaying;
-            updateUI();
         });
 
         // Liên kết thanh âm lượng
