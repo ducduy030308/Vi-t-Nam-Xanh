@@ -1,258 +1,315 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Việt Nam Xanh | Hành Động Vì Tương Lai</title>
-
-```
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; }
-
-    .hero-gradient {
-        background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-    }
-
-    .content-image {
-        width: 100%;
-        border-radius: 20px;
-        object-fit: cover;
-        height: 400px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-    }
-
-    #issues, #solutions {
-        scroll-margin-top: 100px;
-    }
-
-    #visualizer {
-        width: 100%;
-        height: 60px;
-    }
-
-    .glass-panel {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(12px);
-    }
-
-    .play-button-outer:active {
-        transform: scale(0.95);
-    }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s ease-out;
-    }
-
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
-</style>
-```
-
+    <title>Tiếng Gọi Đại Dương Việt - Bảo Vệ Biển Xanh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.0/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Be+Vietnam+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .ocean-card:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .img-hover-zoom {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .img-hover-zoom img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .img-hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
-
 <body class="bg-slate-50 text-slate-800">
 
-```
-<!-- FIX: đổi tên file audio -->
-<audio id="myAudio" src="ghi-tieu-chuan-1.mp3"></audio>
-
-<!-- Navbar -->
-<nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b">
-    <div class="max-w-7xl mx-auto px-4 flex justify-between h-16 items-center">
-        <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <div class="bg-emerald-100 p-2 rounded-lg">
-                <i data-lucide="leaf" class="text-emerald-600 w-6 h-6"></i>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <i data-lucide="waves" class="text-blue-600 w-8 h-8"></i>
+                <span class="font-bold text-blue-900 tracking-tight">VÌ BIỂN XANH</span>
             </div>
-            <span class="font-bold text-xl text-emerald-900 uppercase italic">VIỆT NAM XANH</span>
-        </div>
-        <div class="hidden md:flex gap-8 font-bold text-slate-500 text-xs uppercase">
-            <a href="#issues">Thực Trạng</a>
-            <a href="#solutions">Giải Pháp</a>
-        </div>
-    </div>
-</nav>
-
-<!-- Header -->
-<section class="pt-40 pb-20 hero-gradient text-white text-center">
-    <h1 class="text-5xl md:text-7xl font-black mb-6">
-        Vì Một <span class="text-emerald-400">Việt Nam</span> Bền Vững
-    </h1>
-    <p class="text-xl opacity-90 max-w-2xl mx-auto">
-        Khám phá thực trạng và giải pháp bảo vệ môi trường qua bản thuyết minh.
-    </p>
-</section>
-
-<!-- Player -->
-<div class="max-w-4xl mx-auto px-4 -mt-10 mb-20">
-    <div class="glass-panel p-5 rounded-3xl shadow-xl flex flex-col md:flex-row items-center gap-6">
-
-        <div class="flex items-center gap-6">
-            <button id="playBtn" class="w-16 h-16 bg-emerald-600 text-white rounded-full flex items-center justify-center">
-                <i data-lucide="play" id="playIcon" class="w-6 h-6 fill-white"></i>
-            </button>
-
-            <div>
-                <span class="text-xs text-emerald-600 font-bold uppercase">Thuyết Minh</span>
-                <div id="narratorStatus" class="text-lg font-bold">Phát</div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <a href="#home" class="hover:text-blue-600 transition">Trang chủ</a>
+                <a href="#stats" class="hover:text-blue-600 transition">Thực trạng</a>
+                <a href="#impact" class="hover:text-blue-600 transition">Hệ sinh thái</a>
+                <a href="#action" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">Hành động ngay</a>
             </div>
         </div>
+    </nav>
 
-        <div class="flex-1 w-full h-16 bg-slate-100 rounded-xl p-2">
-            <canvas id="visualizer"></canvas>
-        </div>
-
-        <!-- FIX: cho mobile luôn -->
-        <div class="flex items-center gap-2">
-            <i data-lucide="volume-2"></i>
-            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
-        </div>
-
-    </div>
-</div>
-
-<!-- Nội dung -->
-<section class="py-12 pb-32">
-    <div class="max-w-7xl mx-auto px-4 space-y-32">
-
-        <div id="issues" class="reveal grid md:grid-cols-2 gap-10 items-center">
-            <div>
-                <h2 class="text-4xl font-black mb-4">Khủng hoảng rác thải nhựa</h2>
-                <p>Việt Nam là một trong những quốc gia xả rác nhựa ra biển nhiều nhất.</p>
-            </div>
-            <img src="https://cdn-i.vtcnews.vn/resize/th/upload/2022/10/20/ra-thai-nhua-2-10412144.png" class="content-image">
-        </div>
-
-        <div id="solutions" class="reveal grid md:grid-cols-2 gap-10 items-center">
-            <img src="https://ktmt.vnmediacdn.com/thumb_x400x/images/2022/03/16/5-1647399923-hinh-anh-bao-ve-moi-truong-kinhtemoitruong-5.jpg" class="content-image">
-            <div>
-                <h2 class="text-4xl font-black mb-4">Giải pháp 3R</h2>
-                <p>Reduce - Reuse - Recycle là chìa khóa.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient h-screen flex items-center justify-center text-center text-white px-4 pt-24">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Tiếng Gọi Từ <span class="text-blue-400">Đại Dương</span> Xanh</h1>
+            <p class="text-lg md:text-2xl mb-8 font-light italic">Việt Nam có hơn 3.260km đường bờ biển. Vẻ đẹp ấy đang cần bạn lên tiếng bảo vệ.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#stats" class="bg-white text-blue-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-blue-50 transition">Khám phá thực trạng</a>
+                <a href="#action" class="border-2 border-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white hover:text-blue-900 transition">Tham gia bảo vệ</a>
             </div>
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- Statistics Section -->
+    <section id="stats" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-blue-900 mb-4 text-center">Những Con Số "Biết Nói"</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">Vấn đề ô nhiễm rác thải nhựa đại dương tại Việt Nam đang ở mức báo động đỏ.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Stat 1 (Ảnh 1) -->
+                <div class="flex flex-col gap-4">
+                    <div class="img-hover-zoom h-56">
+                        <img src="image_b1c841.jpg" alt="Rác thải nhựa bủa vây bờ biển">
+                    </div>
+                    <div class="p-8 bg-blue-50 rounded-2xl text-center shadow-sm ocean-card border border-blue-100 flex-grow">
+                        <div class="text-blue-600 mb-4 flex justify-center"><i data-lucide="alert-triangle" size="40"></i></div>
+                        <h3 class="text-3xl font-extrabold text-blue-900 mb-2">0,28 - 0,73</h3>
+                        <p class="font-bold text-slate-700 uppercase text-xs tracking-wide">Triệu tấn rác thải nhựa</p>
+                        <p class="text-sm text-slate-500 mt-2">Xả ra biển Việt Nam mỗi năm, đứng thứ 4 trong danh sách các quốc gia xả nhiều rác nhựa nhất.</p>
+                    </div>
+                </div>
 
-<footer class="bg-slate-900 text-white py-10 text-center">
-    <p>Việt Nam Xanh</p>
-</footer>
-```
+                <!-- Stat 2 (Ảnh 2) -->
+                <div class="flex flex-col gap-4">
+                    <div class="img-hover-zoom h-56">
+                        <img src="image_b1d03f.jpg" alt="Rạn san hô bị tổn thương nặng nề">
+                    </div>
+                    <div class="p-8 bg-blue-50 rounded-2xl text-center shadow-sm ocean-card border border-blue-100 flex-grow">
+                        <div class="text-blue-600 mb-4 flex justify-center"><i data-lucide="thermometer-sun" size="40"></i></div>
+                        <h3 class="text-3xl font-extrabold text-blue-900 mb-2">45%</h3>
+                        <p class="font-bold text-slate-700 uppercase text-xs tracking-wide">Rạn san hô biến mất</p>
+                        <p class="text-sm text-slate-500 mt-2">Sự suy giảm nghiêm trọng của đa dạng sinh học do nước biển nóng dần và ô nhiễm rác thải nhựa.</p>
+                    </div>
+                </div>
 
-<script>
-lucide.createIcons();
+                <!-- Stat 3 (Ảnh 3) -->
+                <div class="flex flex-col gap-4">
+                    <div class="img-hover-zoom h-56">
+                        <img src="image_b1d07d.jpg" alt="Cảnh quan ven biển Việt Nam">
+                    </div>
+                    <div class="p-8 bg-blue-50 rounded-2xl text-center shadow-sm ocean-card border border-blue-100 flex-grow">
+                        <div class="text-blue-600 mb-4 flex justify-center"><i data-lucide="anchor" size="40"></i></div>
+                        <h3 class="text-3xl font-extrabold text-blue-900 mb-2">28</h3>
+                        <p class="font-bold text-slate-700 uppercase text-xs tracking-wide">Tỉnh thành ven biển</p>
+                        <p class="text-sm text-slate-500 mt-2">Toàn bộ 28 địa phương giáp biển đều đang chịu áp lực từ ô nhiễm môi trường biển.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* REVEAL */
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => e.isIntersecting && e.target.classList.add('active'));
-});
-reveals.forEach(el => observer.observe(el));
+    <!-- Visual Storytelling Section -->
+    <section id="impact" class="py-24 bg-slate-900 text-white overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-bold mb-6 italic">"Đáy biển không phải là bãi rác"</h2>
+                    <p class="text-slate-300 text-lg mb-6">Tại các vùng biển như Vịnh Hạ Long, Phú Quốc, Nha Trang... rác thải nhựa đang bủa vây các hệ sinh thái. San hô chết trắng, rùa biển mắc kẹt trong lưới ma, và vi nhựa đi ngược vào chuỗi thức ăn của con người.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle" class="text-blue-400 mt-1"></i>
+                            <span><b>Mất cân bằng:</b> Đa dạng sinh học biển Việt Nam suy giảm nghiêm trọng.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle" class="text-blue-400 mt-1"></i>
+                            <span><b>Kinh tế:</b> Ảnh hưởng trực tiếp đến thu nhập từ du lịch và ngư nghiệp.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle" class="text-blue-400 mt-1"></i>
+                            <span><b>Sức khỏe:</b> Vi nhựa tồn dư trong hải sản đe dọa sức khỏe cộng đồng.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?auto=format&fit=crop&q=80&w=1000" alt="Ô nhiễm rác nhựa đại dương" class="rounded-2xl shadow-2xl z-10 relative border-4 border-slate-700">
+                    <div class="absolute -bottom-6 -left-6 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl -z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-/* AUDIO */
-const audio = document.getElementById('myAudio');
-const btn = document.getElementById('playBtn');
-const status = document.getElementById('narratorStatus');
-const volume = document.getElementById('volumeControl');
-const canvas = document.getElementById('visualizer');
-const ctx = canvas.getContext('2d');
+    <!-- Solutions / Actions -->
+    <section id="action" class="py-24 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold text-blue-900 mb-12">Hành Động Nhỏ - Thay Đổi Lớn</h2>
+            
+            <div class="grid md:grid-cols-4 gap-8 mb-16">
+                <!-- Action 1 (Ảnh 4) -->
+                <div class="group overflow-hidden rounded-2xl bg-slate-50 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
+                    <div class="h-44 overflow-hidden">
+                        <img src="image_b1d09c.jpg" alt="Thay thế túi nilon bằng túi vải" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col items-center group-hover:bg-blue-600 transition-colors duration-300">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-500">
+                            <i data-lucide="shopping-bag" class="text-blue-600 w-5 h-5 group-hover:text-white"></i>
+                        </div>
+                        <h4 class="font-bold mb-2 group-hover:text-white">Hạn chế nhựa</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-blue-100">Thay thế đồ nhựa một lần bằng các sản phẩm bền vững và túi vải.</p>
+                    </div>
+                </div>
 
-let audioCtx, analyser, source, dataArray;
-let isPlaying = false;
+                <!-- Action 2 (Ảnh 5) -->
+                <div class="group overflow-hidden rounded-2xl bg-slate-50 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
+                    <div class="h-44 overflow-hidden">
+                        <img src="image_b1d366.jpg" alt="Quy trình phân loại rác" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col items-center group-hover:bg-blue-600 transition-colors duration-300">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-500">
+                            <i data-lucide="trash-2" class="text-blue-600 w-5 h-5 group-hover:text-white"></i>
+                        </div>
+                        <h4 class="font-bold mb-2 group-hover:text-white">Phân loại rác</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-blue-100">Phân loại rác tại nguồn giúp giảm gánh nặng cho hệ thống xử lý.</p>
+                    </div>
+                </div>
 
-/* FIX resize chuẩn */
-function resizeCanvas(){
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-}
-window.addEventListener('load', resizeCanvas);
-window.addEventListener('resize', resizeCanvas);
+                <!-- Action 3 (Minh họa Tình nguyện) -->
+                <div class="group overflow-hidden rounded-2xl bg-slate-50 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
+                    <div class="h-44 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618477462146-050d2767eac4?auto=format&fit=crop&q=80&w=800" alt="Tình nguyện viên dọn biển" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col items-center group-hover:bg-blue-600 transition-colors duration-300">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-500">
+                            <i data-lucide="users" class="text-blue-600 w-5 h-5 group-hover:text-white"></i>
+                        </div>
+                        <h4 class="font-bold mb-2 group-hover:text-white">Tình nguyện</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-blue-100">Tham gia các ngày hội làm sạch biển tại địa phương của bạn.</p>
+                    </div>
+                </div>
 
-/* INIT */
-function init(){
-    if(audioCtx) return;
-    audioCtx = new AudioContext();
-    source = audioCtx.createMediaElementSource(audio);
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 128;
+                <!-- Action 4 (Ảnh 6) -->
+                <div class="group overflow-hidden rounded-2xl bg-slate-50 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
+                    <div class="h-44 overflow-hidden">
+                        <img src="image_b1d445.jpg" alt="Chiến dịch truyền thông bảo vệ môi trường" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col items-center group-hover:bg-blue-600 transition-colors duration-300">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-3 group-hover:bg-blue-500">
+                            <i data-lucide="megaphone" class="text-blue-600 w-5 h-5 group-hover:text-white"></i>
+                        </div>
+                        <h4 class="font-bold mb-2 group-hover:text-white">Lan tỏa</h4>
+                        <p class="text-sm text-slate-500 group-hover:text-blue-100">Chia sẻ thông điệp bảo vệ đại dương trên các mạng xã hội.</p>
+                    </div>
+                </div>
+            </div>
 
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
+            <!-- Pledge Counter -->
+            <div class="mt-20 p-10 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl text-white shadow-xl overflow-hidden relative">
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-bold mb-4 uppercase tracking-wider">Ký Tên Cam Kết</h3>
+                    <p class="mb-6 opacity-90 text-lg">Cùng hàng nghìn người Việt Nam cam kết hành động vì một đại dương không rác thải nhựa.</p>
+                    <button onclick="signPledge()" id="pledgeBtn" class="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-xl hover:shadow-2xl transition transform active:scale-95">
+                        TÔI CAM KẾT
+                    </button>
+                </div>
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+            </div>
+        </div>
+    </section>
 
-    dataArray = new Uint8Array(analyser.frequencyBinCount);
-}
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center gap-8 mb-10">
+                <a href="#" class="hover:text-blue-400 transition transform hover:scale-110"><i data-lucide="facebook"></i></a>
+                <a href="#" class="hover:text-pink-400 transition transform hover:scale-110"><i data-lucide="instagram"></i></a>
+                <a href="#" class="hover:text-red-500 transition transform hover:scale-110"><i data-lucide="youtube"></i></a>
+            </div>
+            <div class="mb-8">
+                <h4 class="text-white font-bold text-xl mb-2 tracking-widest uppercase">Huỳnh Đức Duy - 12TH</h4>
+                <div class="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+            <p class="text-sm max-w-md mx-auto leading-relaxed italic">
+                Vì một Việt Nam xanh - Vì một đại dương không rác thải nhựa.
+            </p>
+        </div>
+    </footer>
 
-/* VISUAL */
-function draw(){
-    if(!isPlaying) return;
+    <!-- Scripts -->
+    <script>
+        // Khởi tạo Lucide
+        window.addEventListener('DOMContentLoaded', (event) => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
 
-    requestAnimationFrame(draw);
-    analyser.getByteFrequencyData(dataArray);
+        // Cuộn mượt
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80, 
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    let w = canvas.width / dataArray.length;
-    let x = 0;
-
-    for(let i=0;i<dataArray.length;i++){
-        let h = dataArray[i]/255 * canvas.height;
-        ctx.fillStyle = "#10b981";
-        ctx.fillRect(x,(canvas.height-h)/2,w-2,h);
-        x += w;
-    }
-}
-
-/* BUTTON */
-btn.onclick = async () => {
-    init();
-
-    if(audioCtx.state === 'suspended') await audioCtx.resume();
-
-    if(isPlaying){
-        audio.pause();
-        isPlaying = false;
-        status.innerText = "Tiếp tục";
-    } else {
-        try{
-            await audio.play();
-            isPlaying = true;
-            status.innerText = "Đang phát...";
-            draw();
-        }catch{
-            status.innerText = "Lỗi file";
+        // Hàm Ký tên
+        function signPledge() {
+            const btn = document.getElementById('pledgeBtn');
+            btn.innerHTML = 'ĐÃ CAM KẾT ❤️';
+            btn.classList.remove('bg-white', 'text-blue-600');
+            btn.classList.add('bg-green-500', 'text-white');
+            btn.disabled = true;
+            
+            const successDiv = document.createElement('div');
+            successDiv.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-2xl shadow-2xl z-[100] text-center animate-bounce border-2 border-green-100';
+            successDiv.innerHTML = `
+                <i data-lucide="heart" class="text-red-500 w-12 h-12 mx-auto mb-4"></i>
+                <h3 class="text-2xl font-bold text-slate-800">Cảm ơn bạn!</h3>
+                <p class="text-slate-600">Hành động của bạn là chìa khóa cứu lấy biển xanh.</p>
+            `;
+            document.body.appendChild(successDiv);
+            
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
         }
-    }
 
-    /* FIX icon */
-    btn.innerHTML = `<i data-lucide="${isPlaying ? 'pause':'play'}" class="w-6 h-6 fill-white"></i>`;
-    lucide.createIcons();
-};
+        // Hiệu ứng hiện dần khi cuộn
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, { threshold: 0.1 });
 
-/* END */
-audio.onended = () => {
-    isPlaying = false;
-    status.innerText = "Phát lại";
-};
-
-/* ERROR */
-audio.onerror = () => {
-    status.innerText = "Không tìm thấy file";
-};
-
-/* VOLUME */
-volume.oninput = e => audio.volume = e.target.value;
-
-</script>
-
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition', 'duration-1000', 'transform', 'translate-y-10', 'opacity-0');
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
-Đang hiển thị 3116923091224935687.
